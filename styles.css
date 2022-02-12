@@ -10,7 +10,10 @@ body {
   width: 266px;
   height: 70px;
   background-color: aqua;
-  
+  font-size: 40px;
+  text-align: right;
+  vertical-align: middle;
+  line-height: 70px;
 }
 
 .calculator {
