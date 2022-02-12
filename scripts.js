@@ -30,4 +30,20 @@ function operate(operator, num1, num2 ) {
   }
 }
 
-operate("*",1,2);
+let clicked = ""; // stores value of clicked num button
+let display = document.querySelector('.display');
+
+function populateDisplay () {
+  display.textContent += clicked;
+}
+
+
+//adds event listener to each num button
+const numbers = document.querySelectorAll('.number');
+numbers.forEach((number) => {
+  number.addEventListener('click', () => {
+    
+    clicked = number.textContent; //stores clicked value
+    populateDisplay();
+  });
+});
