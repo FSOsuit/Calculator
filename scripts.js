@@ -30,10 +30,7 @@ function operate(operator, num1, num2 ) {
   }
 }
 
-const operatorArray = [];
-const numberArray = [];
-
-let operatorCount = 0;
+let operationCounter = 0;
 let operatorSign = ""; //store clicke operator sign
 let number1 = 0; // stores 1st number
 let number2 = 0; // stores 2nd number
@@ -62,16 +59,34 @@ numbers.forEach((number) => {
 const operators = document.querySelectorAll('.operator');
 operators.forEach((operator) => {
   operator.addEventListener('click', () => {
-    operatorSign = operator.textContent;
-    number1 = display.textContent;
-    display.textContent = "";
+    
+    if (operationCounter === 0) {
+
+      number1 = display.textContent;
+      display.textContent = "";
+      operatorSign = operator.textContent;
+    } else {
+      
+      number2 = display.textContent;
+      number1 = operate(operatorSign, Number(number1), Number(number2));
+      display.textContent = "";
+      operatorSign = operator.textContent;
+      
+    }
+
+    operationCounter ++;
   });
 });
 
 const equal = document.querySelector('.equals');
 equal.addEventListener('click', () => {
   number2 = display.textContent;
-  display.textContent = operate(operatorSign, Number(number1), Number(number2));
+  if (number2 == 0) {
+    display.textContent = "LOL!";
+  } else {
+    result = operate(operatorSign, Number(number1), Number(number2));
+    display.textContent = result.toFixed(4);
+  }
 });
 
 const clear = document.querySelector('.clear');
@@ -79,5 +94,6 @@ clear.addEventListener('click', () => {
   number1 = "";
   number2 = "";
   display.textContent = "";
+  operationCounter = 0;
 });
 
