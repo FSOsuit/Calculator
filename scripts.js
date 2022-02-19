@@ -59,14 +59,12 @@ numbers.forEach((number) => {
 const operators = document.querySelectorAll('.operator');
 operators.forEach((operator) => {
   operator.addEventListener('click', () => {
-    
+    //checks if operator sign was pressed first time.
     if (operationCounter === 0) {
-
       number1 = display.textContent;
       display.textContent = "";
       operatorSign = operator.textContent;
     } else {
-      
       number2 = display.textContent;
       number1 = operate(operatorSign, Number(number1), Number(number2));
       display.textContent = "";
@@ -85,7 +83,13 @@ equal.addEventListener('click', () => {
     display.textContent = "LOL!";
   } else {
     result = operate(operatorSign, Number(number1), Number(number2));
-    display.textContent = result.toFixed(4);
+    if (result % 1 !== 0) {
+
+      display.textContent = result.toFixed(2);
+    } else {
+      display.textContent = result;
+    }
+
   }
 });
 
